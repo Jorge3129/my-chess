@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyChess</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<script type="module" src="js/script.js"></script>
+<script type="module" src="js/pieces.js"></script>
+<header>
+    <h1 class="title">My Chess</h1>
+    <nav class="menu">
+        <ul class="menu-list">
+            <li class="menu-list-item"><a href="#">Home</a></li>
+            <li class="menu-list-item"><a href="#">Account</a></li>
+            <li class="menu-list-item"><a href="#">History</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <form class="settings">
+        <div class="select-wrap">
+            <label>
+                Choose your side:
+                <select id="select-side" name="select-side">
+                    <option class="side-option" value="whites">Whites</option>
+                    <option class="side-option" value="blacks">Blacks</option>
+                </select>
+            </label>
+        </div>
+    </form>
+    <div class="board-list" id="board-list"></div>
+</main>
+<footer>
+</footer>
+</body>
+</html>
