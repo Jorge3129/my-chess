@@ -7,7 +7,6 @@
 </head>
 <body>
 <script type="module" src="js/script.js"></script>
-<script type="module" src="js/pieces.js"></script>
 <header>
     <h1 class="title">My Chess</h1>
     <nav class="menu">
@@ -19,20 +18,19 @@
     </nav>
 </header>
 <main>
-    <form class="settings">
-        <div class="select-wrap">
-            <label>
-                Choose your side:
-                <select id="select-side" name="select-side">
-                    <option class="side-option" value="whites">Whites</option>
-                    <option class="side-option" value="blacks">Blacks</option>
-                </select>
-            </label>
-        </div>
-    </form>
+    <div class="select-wrap">
+        <form class="settings">
+            <label for="select-side">Choose your side:</label>
+            <select id="select-side" name="select-side">
+                <option class="side-option" value="whites">Whites</option>
+                <option class="side-option" value="blacks">Blacks</option>
+            </select>
+        </form>
+    </div>
     <div class="board-list" id="board-list"></div>
 </main>
-<footer>
+<footer class="footer">
+    &copy; 2022 Heorhii Sanchenko
 </footer>
 </body>
 </html>
