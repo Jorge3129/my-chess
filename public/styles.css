@@ -1,10 +1,15 @@
 :root {
+    --fav: #deaa00;
     --dark-green: #3f6934;
     --menu-hover: #ffeb0f;
-    --blacks: #79a65e;
+    --light-green: #79a65e;
+    --blacks: #9bc482;
     --green: #61944b;
     --whites: #fff7a1;
-    --moves: #deaa00;
+    --moves: #c29b00;
+    --moves-dark: #e0bb00;
+    --kills: #a85700;
+    --kills-dark: #de7300;
 }
 
 body {
@@ -20,7 +25,7 @@ body {
 }
 
 .menu {
-    background-color: var(--blacks);
+    background-color: var(--light-green);
     padding: 10px 0;
 }
 
@@ -119,8 +124,21 @@ body {
     width: 20%;
 }
 
-.move {
-    box-shadow: inset -6px 6px var(--moves), inset 6px -6px var(--moves);
+.white.move {
+    box-shadow: inset -10px 10px 10px var(--moves), inset 10px -10px 10px var(--moves);
+}
+
+
+.black.move {
+    box-shadow: inset -10px 10px 10px var(--moves-dark), inset 10px -10px 10px var(--moves-dark);
+}
+
+.black.kill {
+    box-shadow: inset -10px 10px 10px var(--kills-dark), inset 10px -10px 10px var(--kills-dark);
+}
+
+.white.kill {
+    box-shadow: inset -10px 10px 10px var(--kills), inset 10px -10px 10px var(--kills);
 }
 
 .footer {
@@ -146,14 +164,15 @@ body {
     border: 1px solid black;
     box-shadow: 2px 2px 2px #999, -2px -2px 2px #999;
     position: relative;
-    width: 26%;
-    height: 50%;
-    margin: 70px 37%;
+    width: 20%;
+    height: fit-content;
+    margin: 10% auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 30px 40px;
     border-radius: 7px;
+    transition: ease all 0.5s;
 }
 
 .login-signup {
@@ -161,6 +180,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-bottom: 15px;
 }
 
 .login-title {
@@ -176,7 +196,7 @@ body {
     width: 50%;
 }
 
-.login-title:hover{
+.login-title:hover {
     background-color: #ededed;
 }
 
@@ -188,13 +208,15 @@ body {
     background-color: var(--blacks);
     box-shadow: -4px 4px 4px #777;
     border: none;
-    border-left: 3px solid  var(--dark-green);
-    border-bottom: 3px solid  var(--dark-green);
+    border-left: 3px solid var(--dark-green);
+    border-bottom: 3px solid var(--dark-green);
     border-radius: 3px;
     font-size: 20px;
     color: #fff;
     padding: 6px;
-    margin: 3px 40px;
+    margin: 15px 40px 4px;
+    font-family: Arial, sans-serif;
+    text-shadow: -1px 1px 1px #000;
 }
 
 .login-ok-btn:hover {
@@ -203,11 +225,57 @@ body {
     color: var(--menu-hover);
 }
 
+.input-wrap {
+    display: flex;
+    flex-direction: column;
+    margin: 7px 0;
+}
+
+.log-form-input {
+    margin-top: 8px;
+    box-shadow: inset -2px 2px 2px #ddd, inset 2px -2px 2px #ddd;
+    border: 0.5px solid #777;
+    border-radius: 2px;
+    height: 16px;
+    padding: 5px;
+}
+
 @media screen and (max-width: 760px) {
     .login-form {
         width: 34%;
-        height: 50%;
-        margin: 70px 26%;
+        margin: 170px 26%;
         padding: 30px 40px;
+        transition: ease all 0.5s;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .login-signup {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-title {
+        width: 80%;
+    }
+
+    .login-ok-btn {
+        margin: 15px 20px 4px;
+        transition: ease all 0.5s;
+    }
+}
+
+@media screen and (max-width: 360px) {
+
+    .login-title {
+        font-size: 16px;
+        transition: ease all 0.5s;
+    }
+
+    .login-ok-btn {
+        margin: 15px 5px 4px;
+        font-size: 16px;
+        transition: ease all 0.5s;
     }
 }

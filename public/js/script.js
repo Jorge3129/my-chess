@@ -1,7 +1,6 @@
 import {board, movePieces} from "./moves.js";
 
 let playingFor = 'whites';
-let loggedIn = false;
 
 function selectSide() {
     document.querySelector('#select-side').addEventListener('change', () => {
@@ -12,38 +11,54 @@ function selectSide() {
     });
 }
 
+function setLogin() {
+    const loginDiv = document.querySelector('.login-back');
+    if (!loginDiv) return;
+
+    document.querySelector('.login-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+    });
+
+    document.querySelector('#login-title').classList.add('underline');
+
+    document.querySelector('.login-signup').addEventListener('click', (e) => {
+        document.querySelector('.underline').classList.remove('underline');
+        e.target.closest('.login-title').classList.add('underline');
+    });
+
+
+    document.querySelector('.login-ok-btn').addEventListener('click', () => {
+        const form = document.querySelector('.login-form');
+        const data = new FormData(form);
+        (async () => {
+            const rawResponse = await fetch('http://localhost:3002/login', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: data.get('username'),
+                    password: data.get('password'),
+                })
+            });
+            const content = await rawResponse.json();
+            console.log(content);
+            if (content['success']) {
+                location.href = `/${data.get('username')}`;
+                document.querySelector('.login-back').remove();
+            } else {
+                alert('Wrong password or username');
+                location.reload();
+            }
+        })();
+    });
+}
+
 board(playingFor);
 movePieces();
 selectSide();
-
-
-let loginDiv = document.createElement('div');
-loginDiv.setAttribute('class', 'login-back');
-loginDiv.innerHTML = `<form class="login-form">
-            <div class="login-signup">
-                <button class="login-title" id="login-title">Login</button>
-                <button class="login-title" id="signup-title">Sign up</button>
-            </div>
-            <label for="username">Username: </label>
-            <input type="text" name="username">
-            <label for="password">Password: </label>
-            <input type="password" name="password">
-            <button class="login-ok-btn">Ok</button>
-        </form>`
-document.body.appendChild(loginDiv);
-document.querySelector('.login-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-});
-document.querySelector('#login-title').classList.add('underline');
-
-document.querySelector('.login-signup').addEventListener('click', (e) => {
-    document.querySelector('.underline').classList.remove('underline');
-    e.target.closest('.login-title').classList.add('underline');
-});
-
-document.querySelector('.login-ok-btn').addEventListener('click',()=>{
-
-});
+setLogin();
 
 
 
